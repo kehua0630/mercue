@@ -1,47 +1,46 @@
 <div nz-row nzType="flex" nzAlign="middle" nzJustify="space-between">
-    <div nz-col>
-      <h1>公出系統</h1>
-    </div>
-    <div>
-      <button nz-button nzType="primary" nzSize="large" (click)="showModal(null,'create')">
-        <i nz-icon nzType="plus" nzTheme="outline"></i>申請公出
-      </button>
-    </div>
+  <div nz-col>
+    <h1>員工基本資料</h1>
   </div>
-  
-  <nz-table #bizout [nzData]="bizoutData">
-    <thead>
-      <tr>
-        <th nzShowSort nzSortKey="name">
-          姓名
-        </th>
-        <th nzShowSort nzSortKey="place">公出地點</th>
-        <th nzShowSort nzSortKey="startDate">
-          開始時間
-        </th>
-        <th nzShowSort nzSortKey="endDate">
-          結束時間
-        </th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let data of bizout.data">
-        <td>{{ data.staff_name }}</td>
-        <td>{{ data.destination }}</td>
-        <td>{{ data.startDate }}</td>
-        <td>{{ data.endDate }}</td>
-        <td style="text-align: end;">
-          <button nz-button nzType="default" (click)="showModal(data,'read')">
-            <i nz-icon nzType="profile" nzTheme="outline"></i> 明細
-          </button>
-          <button nz-button nzType="primary" nzGhost (click)="showModal(data,'edit')">
-            <i nz-icon nzType="edit" nzTheme="outline"></i> 修改
-          </button>
-          <button nz-button nzType="danger" nzGhost (click)="delete(data.id)">
-            <i nz-icon nzType="delete" nzTheme="outline"></i>刪除
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </nz-table>
+  <div>
+    <button
+      nz-button
+      nzType="primary"
+      nzSize="large"
+    >
+      <i nz-icon nzType="plus" nzTheme="outline"></i>新增員工
+    </button>
+  </div>
+</div>
+
+<nz-table #employee [nzData]="employeeData">
+  <thead>
+    <tr>
+      <th nzShowSort nzSortKey="name">
+        姓名
+      </th>
+      <th nzShowSort nzSortKey="en">
+        英文姓名
+      </th>
+      <th nzShowSort nzSortKey="email">Email</th>
+      <th nzShowSort nzSortKey="extention">
+        分機
+      </th>
+      <th nzShowSort nzSortKey="position">
+        職務
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of employee.data">
+
+      <td>
+        <a [routerLink]="['/employee', data.employee_id]">{{ data.employee_name }}</a>
+      </td>
+      <td>{{ data.employee_en }}</td>
+      <td>{{ data.employee_email }}</td>
+      <td>{{ data.employee_extension }}</td>
+      <td>{{ data.employee_position }}</td>
+    </tr>
+  </tbody>
+</nz-table>

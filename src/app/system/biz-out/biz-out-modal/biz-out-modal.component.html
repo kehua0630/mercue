@@ -10,7 +10,14 @@
   <nz-form-item>
     <nz-form-label nzFor="title" [nzSm]="5" [nzXs]="24"> 姓名</nz-form-label>
     <nz-form-control [nzSm]="16" [nzXs]="24">
-      <input type="text" nz-input formControlName="staff_name" />
+      <nz-select nzShowSearch formControlName="staff_name" nzAllowClear>
+        <nz-option
+          *ngFor="let employee of employeeList"
+          [nzValue]="employee.employee_en"
+          [nzLabel]="employee.employee_en"
+        ></nz-option>
+      </nz-select>
+      <!-- <input type="text" nz-input formControlName="staff_name" /> -->
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>

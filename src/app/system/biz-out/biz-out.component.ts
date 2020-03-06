@@ -20,11 +20,12 @@ export class BizOutComponent implements OnInit {
 
   bizout: BizOut;
   bizoutData: BizOut[] = [];
+  employee_id: string;
 
 
   //新增, 修改, 明細 modal視窗
   showModal(bizout: BizOut | null, type: string) {
-    let title:string;
+    let title: string;
     console.log(bizout)
     console.log(type)
 
@@ -32,7 +33,7 @@ export class BizOutComponent implements OnInit {
       title = '公出單';
     } else if (bizout && type == 'edit') {
       title = '修改公出單';
-    } else { 
+    } else {
       title = '公出申請'
     }
 
@@ -62,7 +63,6 @@ export class BizOutComponent implements OnInit {
       (data: any) => {
         console.log(data)
         this.bizoutData = data.bizoutList;
-        this.bizoutData
         // console.log(data.message)
         console.log(this.bizoutData)
       }

@@ -14,6 +14,7 @@ import en from '@angular/common/locales/en';
 import { BizOutComponent } from './system/biz-out/biz-out.component';
 import { EmployeeComponent } from './system/employee/employee.component';
 import { BizOutModalComponent } from './system/biz-out/biz-out-modal/biz-out-modal.component';
+import { EmployeeDetailComponent } from './system/employee/employee-detail/employee-detail.component';
 
 registerLocaleData(en);
 
@@ -22,7 +23,8 @@ registerLocaleData(en);
     AppComponent,
     BizOutComponent,
     EmployeeComponent,
-    BizOutModalComponent
+    BizOutModalComponent,
+    EmployeeDetailComponent
   ],
   imports: [
     BrowserModule,
