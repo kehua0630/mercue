@@ -1,0 +1,135 @@
+<form nz-form [formGroup]="validateForm">
+  <nz-form-item [hidden]="true">
+    <nz-form-label [nzSm]="5" [nzXs]="24" nzFor="id">ID</nz-form-label>
+    <nz-form-control [nzSm]="16" [nzXs]="24">
+      <input nz-input formControlName="employee_id" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <div nz-row [nzGutter]="24">
+    <div nz-col [nzSpan]="8">
+      <nz-form-item>
+        <nz-form-label>姓名</nz-form-label>
+        <nz-form-control
+          ><input nz-input formControlName="employee_name"
+        /></nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col [nzSpan]="8">
+      <nz-form-item>
+        <nz-form-label>英文姓名</nz-form-label>
+        <nz-form-control
+          ><input nz-input formControlName="employee_en"/></nz-form-control
+      ></nz-form-item>
+    </div>
+
+    <div nz-col [nzSpan]="8">
+      <nz-form-item>
+        <nz-form-label>在職狀態</nz-form-label>
+        <nz-form-control
+          ><nz-select name="select-validate" formControlName="employee_status">
+            <nz-option nzValue="1" nzLabel="在職中"></nz-option>
+            <nz-option nzValue="2" nzLabel="離職"></nz-option>
+            <nz-option nzValue="3" nzLabel="留職停薪"></nz-option>
+          </nz-select></nz-form-control
+      ></nz-form-item>
+    </div>
+  </div>
+
+  <div nz-row [nzGutter]="24">
+    <div nz-col [nzSpan]="8">
+      <nz-form-item>
+        <nz-form-label>職務</nz-form-label>
+        <nz-form-control
+          ><input
+            nz-input
+            formControlName="employee_position"/></nz-form-control
+      ></nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="8">
+      <nz-form-item>
+        <nz-form-label>分機</nz-form-label>
+        <nz-form-control
+          ><input
+            nz-input
+            formControlName="employee_extension"/></nz-form-control
+      ></nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="8">
+      <nz-form-item>
+        <nz-form-label>到職日</nz-form-label>
+        <nz-form-control
+          ><nz-date-picker
+            formControlName="employee_onboarddate"
+          ></nz-date-picker></nz-form-control
+      ></nz-form-item>
+    </div>
+  </div>
+
+  <div nz-row [nzGutter]="24">
+    <div nz-col [nzSpan]="8">
+      <nz-form-item>
+        <nz-form-label>手機</nz-form-label>
+        <nz-form-control>
+          <input nz-input formControlName="employee_mobile" />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+
+    <div nz-col [nzSpan]="8">
+      <nz-form-item>
+        <nz-form-label>出生年月日</nz-form-label>
+        <nz-form-control
+          ><nz-date-picker
+            formControlName="employee_bd"
+          ></nz-date-picker></nz-form-control
+      ></nz-form-item>
+    </div>
+    <div nz-col [nzSpan]="8">
+      <nz-form-item>
+        <nz-form-label>密碼</nz-form-label>
+        <nz-form-control>
+          <nz-input-group [nzSuffix]="suffixTemplate">
+            <input
+              [type]="passwordVisible ? 'text' : 'password'"
+              nz-input
+              placeholder="input password"
+              formControlName="employee_password"
+            />
+          </nz-input-group>
+          <ng-template #suffixTemplate>
+            <i
+              nz-icon
+              [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+              (click)="passwordVisible = !passwordVisible"
+            ></i>
+          </ng-template> </nz-form-control
+      ></nz-form-item>
+    </div>
+  </div>
+
+  <nz-form-item>
+    <nz-form-label>Email</nz-form-label>
+    <nz-form-control
+      ><input nz-input formControlName="employee_email"/></nz-form-control
+  ></nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>住址</nz-form-label>
+    <nz-form-control
+      ><input nz-input formControlName="employee_address"/></nz-form-control
+  ></nz-form-item>
+</form>
+
+<div *nzModalFooter>
+  <!-- <button nz-button nzType="default" (click)="modal.close()">
+        關閉
+      </button> -->
+  <button nz-button nzType="default" (click)="modal.close()">
+    取消
+  </button>
+  <button nz-button nzType="primary" (click)="updateEmployeeList()">
+    確定
+  </button>
+</div>

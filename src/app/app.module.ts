@@ -15,6 +15,8 @@ import { BizOutComponent } from './system/biz-out/biz-out.component';
 import { EmployeeComponent } from './system/employee/employee.component';
 import { BizOutModalComponent } from './system/biz-out/biz-out-modal/biz-out-modal.component';
 import { EmployeeDetailComponent } from './system/employee/employee-detail/employee-detail.component';
+import { LoginComponent } from './system/login/login.component';
+import { EmployeeModalComponent } from './system/employee/employee-modal/employee-modal.component';
 
 registerLocaleData(en);
 
@@ -24,7 +26,9 @@ registerLocaleData(en);
     BizOutComponent,
     EmployeeComponent,
     BizOutModalComponent,
-    EmployeeDetailComponent
+    EmployeeDetailComponent,
+    LoginComponent,
+    EmployeeModalComponent
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../../services/employee.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { Employee } from '../../model/employee.model';
+import { EmployeeModalComponent } from './employee-modal/employee-modal.component';
 
 @Component({
   selector: 'app-employee',
@@ -17,37 +18,35 @@ export class EmployeeComponent implements OnInit {
   }
 
    //新增, 修改, 明細 modal視窗
-  //  showModal(bizout: BizOut | null, type: string) {
-  //   let title:string;
-  //   console.log(bizout)
-  //   console.log(type)
+   showModal(employee:Employee | null, type: string) {
+    let title:string;
+    console.log(employee)
+    console.log(type)
 
-  //   if (bizout && type == 'read') {
-  //     title = '公出單';
-  //   } else if (bizout && type == 'edit') {
-  //     title = '修改公出單';
-  //   } else { 
-  //     title = '公出申請'
-  //   }
+    if (employee && type == 'edit') {
+      title = '修改員工資料';
+    } else { 
+      title = '新增員工'
+    }
 
-  //   this.modalService.create({
-  //     nzTitle: title,
-  //     nzContent: BizOutModalComponent,
-  //     nzWidth: '50%',
-  //     nzMaskClosable: false,
-  //     nzComponentParams: {
-  //       inputData: bizout,
-  //       type: type,
-  //       // phraseList: this.phraseList,
-  //     },
-  //     nzOnOk: () => {
-  //       if (type != 'read') {
-  //         this.getBizOutData();
-  //         console.log(this.bizout);
-  //       }
-  //     }
-  //   });
-  // }
+    this.modalService.create({
+      nzTitle: title,
+      nzContent: EmployeeModalComponent,
+      nzWidth: '50%',
+      nzMaskClosable: false,
+      nzComponentParams: {
+        inputData: employee,
+        type: type,
+        // phraseList: this.phraseList,
+      },
+      // nzOnOk: () => {
+      //   if (type != 'read') {
+      //     this.getBizOutData();
+      //     console.log(this.bizout);
+      //   }
+      // }
+    });
+  }
 
   //----------DB function------------------
   employeeData: Employee[];
@@ -59,11 +58,5 @@ export class EmployeeComponent implements OnInit {
         console.log(this.employeeData)
       }
     )
-  }
-
-  delete(employee_id: string) {
-    console.log(employee_id)
-    this.employeeService.deleteEmployee(employee_id);
-    this.getEmployeeData();
   }
 }

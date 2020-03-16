@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { URL, METHOD } from '../Constant';
 import { map } from 'rxjs/operators';
+import { EmployeeModalComponent } from '../system/employee/employee-modal/employee-modal.component';
 
 @Injectable({
   providedIn: 'root'
@@ -33,11 +34,18 @@ export class EmployeeService {
     return this.http.get<{ message: string, employeeList: Employee }>(URL.IPLocation + URL.EMPLOYEE + METHOD.GET + '?id=' + employee_id)
   }
 
-  deleteEmployee(employee_id: string) {
-    console.log(employee_id)
-    this.http.get<{ message: string, employeeList: Employee[] }>(URL.IPLocation + URL.BIZOUT + METHOD.DELETE + '?id=' + employee_id).subscribe(
-      (data: any) => {
-        console.log(data.message)
-      })
+  updateEmployee(employee: Employee, callback: (any) => void) {
+    console.log(employee);
+    
+    
+    if (employee.employee_id) {
+      console.log(URL.IPLocation + URL.EMPLOYEE + METHOD.UPDATE)
+      this.http.post<{ message: string }>(URL.IPLocation + URL.EMPLOYEE + METHOD.UPDATE, employee)
+      .subscribe((data: any) => { callback(data) })
+    } else {
+      console.log(URL.IPLocation + URL.EMPLOYEE + METHOD.INSERT)
+      this.http.post<{ message: string }>(URL.IPLocation + URL.EMPLOYEE + METHOD.INSERT, employee)
+      .subscribe((data: any) => { callback(data) })
+    }
   }
 }

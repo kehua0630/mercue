@@ -34,6 +34,7 @@ export class BizOutService {
       this.http.post<{ message: string }>(URL.IPLocation + URL.BIZOUT + METHOD.UPDATE, bizOut)
       .subscribe((data: any) => { callback(data) })
     } else {
+      console.log(URL.IPLocation + URL.BIZOUT + METHOD.INSERT)
       this.http.post<{ message: string }>(URL.IPLocation + URL.BIZOUT + METHOD.INSERT, bizOut)
       .subscribe((data: any) => { callback(data) })
     }

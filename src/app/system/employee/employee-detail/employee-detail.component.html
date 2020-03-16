@@ -36,12 +36,18 @@
 <br />
 <div nz-row nzType="flex" nzJustify="space-between">
   <div nz-col>
-    <button nz-button  (click)="goBack()">
+    <button nz-button (click)="goBack()">
       <i nz-icon nzType="left"></i>回上一頁
     </button>
   </div>
   <div nz-col>
-    <button nz-button nzType="primary" nzGhost>
+    <button
+      nz-button
+      nzType="primary"
+      nzGhost
+      (click)="showModal(employee, 'edit')"
+      [disabled]="employee.employee_status === '2'"
+    >
       <i nz-icon nzType="edit" nzTheme="outline"></i> 修改
     </button>
   </div>
