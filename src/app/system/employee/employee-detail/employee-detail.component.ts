@@ -18,11 +18,22 @@ export class EmployeeDetailComponent implements OnInit {
     private location: Location, private modalService: NzModalService) { }
 
   ngOnInit(): void {
-    this.getEmloyee();
+    this.getEmployee();
   }
 
-  employee: any;
-  status: string = '';
+  employee: Employee;
+  employee_name: string;
+  employee_en: string;
+  employee_extension: string;
+  employee_mobile: string;
+  employee_position: string;
+  employee_status: string;
+  employee_email: string;
+  employee_password: string;
+  employee_address: string;
+  employee_onboarddate: Date;
+  employee_bd: Date;
+
 
   //回上一頁
   goBack(): void {
@@ -31,7 +42,7 @@ export class EmployeeDetailComponent implements OnInit {
 
 
   //取得員工資料
-  getEmloyee(): void {
+  getEmployee(): void {
     console.log('get employee detail')
     const id = +this.route.snapshot.paramMap.get('id');//用route.snapshot.paramMap.get取得Routing時傳入的變數
     console.log(id)
@@ -39,17 +50,23 @@ export class EmployeeDetailComponent implements OnInit {
       .subscribe((data) => {
         console.log(data);
         this.employee = data.employeeList[0];
-        // this.status = data.employeeList[0].employee_status
-        console.log(data.employeeList[0].employee_status)
         switch (data.employeeList[0].employee_status) {
-          case '1': this.status = '在職';
-            console.log('case 1:' + this.status)
+          case '1': this.employee_status = '在職'
             break;
-          case '2': this.status = '離職';
+          case '2': this.employee_status = '離職';
             break;
-          case '3': this.status = '留職停薪';
+          case '3': this.employee_status = '留職停薪';
             break;
         }
+        this.employee_name = this.employee.employee_name;
+        this.employee_en = this.employee.employee_en;
+        this.employee_mobile = this.employee.employee_mobile;
+        this.employee_position = this.employee.employee_position;
+        this.employee_email = this.employee.employee_email;
+        this.employee_password = this.employee.employee_password
+        this.employee_address = this.employee.employee_address;
+        this.employee_onboarddate = this.employee.employee_onboarddate;
+        this.employee_bd = this.employee.employee_bd;
 
       })
   }

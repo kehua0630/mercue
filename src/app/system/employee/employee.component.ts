@@ -17,15 +17,52 @@ export class EmployeeComponent implements OnInit {
     this.getEmployeeData();
   }
 
-   //新增, 修改, 明細 modal視窗
-   showModal(employee:Employee | null, type: string) {
-    let title:string;
+  //----------DB function------------------
+  employeeData: Employee[];
+  getEmployeeData() {
+    this.employeeService.getEmployeeList().subscribe(
+      (data: any) => {
+        console.log(data);
+        /** sort data **/
+        if (this.sortName && this.sortValue) {
+          this.employeeData = data.employeeList.sort((a, b) =>
+            this.sortValue === 'ascend'
+              ? a[this.sortName!] > b[this.sortName!]
+                ? 1
+                : -1
+              : b[this.sortName!] > a[this.sortName!]
+                ? 1
+                : -1
+          );
+          console.log(this.employeeData)
+        } else {
+          this.employeeData = data.employeeList;
+        }
+        // this.employeeData = data.employeeList;
+        console.log(this.employeeData)
+      })
+
+  }
+
+
+  //  sort
+  sortName: string | null = null;
+  sortValue: string | null = null;
+  sort(sort: { key: string; value: string }): void {
+    this.sortName = sort.key;
+    this.sortValue = sort.value;
+    this.getEmployeeData();
+  }
+
+  //新增, 修改, 明細 modal視窗
+  showModal(employee: Employee | null, type: string) {
+    let title: string;
     console.log(employee)
     console.log(type)
 
     if (employee && type == 'edit') {
       title = '修改員工資料';
-    } else { 
+    } else {
       title = '新增員工'
     }
 
@@ -48,15 +85,5 @@ export class EmployeeComponent implements OnInit {
     });
   }
 
-  //----------DB function------------------
-  employeeData: Employee[];
-  getEmployeeData() {
-    this.employeeService.getEmployeeList().subscribe(
-      (data: any) => {
-        console.log(data)
-        this.employeeData = data.employeeList;
-        console.log(this.employeeData)
-      }
-    )
-  }
+
 }

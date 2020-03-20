@@ -7,7 +7,7 @@
       nz-button
       nzType="primary"
       nzSize="large"
-      (click)="showModal(null,'create')"
+      (click)="showModal(null, 'create')"
     >
       <i nz-icon nzType="plus" nzTheme="outline"></i>新增員工
     </button>
@@ -15,7 +15,7 @@
 </div>
 
 <nz-table #employee [nzData]="employeeData">
-  <thead>
+  <thead (nzSortChange)="sort($event)">
     <tr>
       <th nzShowSort nzSortKey="name">
         姓名
@@ -24,19 +24,20 @@
         英文姓名
       </th>
       <th nzShowSort nzSortKey="email">Email</th>
-      <th nzShowSort nzSortKey="extention">
+      <th nzSortKey="extention">
         分機
       </th>
-      <th nzShowSort nzSortKey="position">
+      <th nzSortKey="position">
         職務
       </th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let data of employee.data">
-
       <td>
-        <a [routerLink]="['/employee', data.employee_id]">{{ data.employee_name }}</a>
+        <a [routerLink]="['/employee', data.employee_id]">{{
+          data.employee_name
+        }}</a>
       </td>
       <td>{{ data.employee_en }}</td>
       <td>{{ data.employee_email }}</td>

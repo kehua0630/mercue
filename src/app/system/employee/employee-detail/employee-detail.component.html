@@ -1,35 +1,33 @@
 <nz-descriptions nzTitle="員工資料表" nzBordered>
   <nz-descriptions-item nzTitle="姓名">{{
-    employee.employee_name
+    employee_name
   }}</nz-descriptions-item>
   <nz-descriptions-item nzTitle="英文名">{{
-    employee.employee_en
+    employee_en
   }}</nz-descriptions-item>
   <nz-descriptions-item nzTitle="職務">{{
-    employee.employee_position
+    employee_position
   }}</nz-descriptions-item>
   <nz-descriptions-item nzTitle="到職日">
-    {{ employee.employee_onboarddate | date }}
+    {{ employee_onboarddate | date }}
   </nz-descriptions-item>
   <nz-descriptions-item nzTitle="手機" [nzSpan]="2">
-    <span *ngIf="employee.employee_mobile">{{
-      "0" + employee.employee_mobile
-    }}</span>
+    <span *ngIf="employee_mobile">{{ "0" + employee_mobile }}</span>
   </nz-descriptions-item>
   <nz-descriptions-item nzTitle="Email" [nzSpan]="3">
-    {{ employee.employee_email }}
+    {{ employee_email }}
   </nz-descriptions-item>
   <nz-descriptions-item nzTitle="在職狀態">
-    {{ status }}
+    {{ employee_status }}
   </nz-descriptions-item>
   <nz-descriptions-item nzTitle="出生年月日">
-    {{ employee.employee_bd | date }}</nz-descriptions-item
+    {{ employee_bd | date }}</nz-descriptions-item
   >
   <nz-descriptions-item nzTitle="分機">
-    {{ employee.employee_extension }}</nz-descriptions-item
+    {{ employee_extension }}</nz-descriptions-item
   >
   <nz-descriptions-item nzTitle="住址">
-    {{ employee.employee_address }}
+    {{ employee_address }}
   </nz-descriptions-item>
 </nz-descriptions>
 
@@ -46,7 +44,7 @@
       nzType="primary"
       nzGhost
       (click)="showModal(employee, 'edit')"
-      [disabled]="employee.employee_status === '2'"
+      [disabled]="employee_status === '離職'"
     >
       <i nz-icon nzType="edit" nzTheme="outline"></i> 修改
     </button>

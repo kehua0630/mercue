@@ -9,7 +9,7 @@
   <div nz-row [nzGutter]="24">
     <div nz-col [nzSpan]="8">
       <nz-form-item>
-        <nz-form-label>姓名</nz-form-label>
+        <nz-form-label [nzRequired]="true">姓名</nz-form-label>
         <nz-form-control
           ><input nz-input formControlName="employee_name"
         /></nz-form-control>
@@ -18,7 +18,7 @@
 
     <div nz-col [nzSpan]="8">
       <nz-form-item>
-        <nz-form-label>英文姓名</nz-form-label>
+        <nz-form-label [nzRequired]="true">英文姓名</nz-form-label>
         <nz-form-control
           ><input nz-input formControlName="employee_en"/></nz-form-control
       ></nz-form-item>
@@ -31,8 +31,10 @@
           ><nz-select name="select-validate" formControlName="employee_status">
             <nz-option nzValue="1" nzLabel="在職中"></nz-option>
             <nz-option nzValue="2" nzLabel="離職"></nz-option>
-            <nz-option nzValue="3" nzLabel="留職停薪"></nz-option>
-          </nz-select></nz-form-control
+            <nz-option
+              nzValue="3"
+              nzLabel="留職停薪"
+            ></nz-option> </nz-select></nz-form-control
       ></nz-form-item>
     </div>
   </div>
@@ -58,7 +60,7 @@
     </div>
     <div nz-col [nzSpan]="8">
       <nz-form-item>
-        <nz-form-label>到職日</nz-form-label>
+        <nz-form-label [nzRequired]="true">到職日</nz-form-label>
         <nz-form-control
           ><nz-date-picker
             formControlName="employee_onboarddate"
@@ -88,7 +90,7 @@
     </div>
     <div nz-col [nzSpan]="8">
       <nz-form-item>
-        <nz-form-label>密碼</nz-form-label>
+        <nz-form-label [nzRequired]="true">密碼</nz-form-label>
         <nz-form-control>
           <nz-input-group [nzSuffix]="suffixTemplate">
             <input
@@ -110,7 +112,7 @@
   </div>
 
   <nz-form-item>
-    <nz-form-label>Email</nz-form-label>
+    <nz-form-label [nzRequired]="true">Email</nz-form-label>
     <nz-form-control
       ><input nz-input formControlName="employee_email"/></nz-form-control
   ></nz-form-item>

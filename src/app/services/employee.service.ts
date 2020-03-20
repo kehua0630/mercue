@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Employee } from '../model/employee.model';
+import { Employee, LoginInfo } from '../model/employee.model';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { URL, METHOD } from '../Constant';
@@ -34,18 +34,36 @@ export class EmployeeService {
     return this.http.get<{ message: string, employeeList: Employee }>(URL.IPLocation + URL.EMPLOYEE + METHOD.GET + '?id=' + employee_id)
   }
 
+  //更新員工資料
   updateEmployee(employee: Employee, callback: (any) => void) {
     console.log(employee);
-    
-    
     if (employee.employee_id) {
       console.log(URL.IPLocation + URL.EMPLOYEE + METHOD.UPDATE)
-      this.http.post<{ message: string }>(URL.IPLocation + URL.EMPLOYEE + METHOD.UPDATE, employee)
-      .subscribe((data: any) => { callback(data) })
+      this.http.put<{ message: string }>(URL.IPLocation + URL.EMPLOYEE + METHOD.UPDATE, employee)
+        .subscribe((data: any) => {
+          callback(data)
+          console.log(data)
+        })
     } else {
       console.log(URL.IPLocation + URL.EMPLOYEE + METHOD.INSERT)
       this.http.post<{ message: string }>(URL.IPLocation + URL.EMPLOYEE + METHOD.INSERT, employee)
-      .subscribe((data: any) => { callback(data) })
+        .subscribe((data: any) => {
+          callback(data)
+          console.log(data)
+          alert(data.message)
+        })
     }
+  }
+
+  //登入
+  login(loginInfo:LoginInfo) {
+    console.log('run login service');
+    console.log(loginInfo)
+    console.log(URL.IPLocation + URL.LOGIN + URL.LOGIN)
+    this.http.post(URL.IPLocation + URL.LOGIN + URL.LOGIN, loginInfo)
+      .subscribe((data: any) => {
+        console.log(data)
+        alert(data.message)
+      })
   }
 }
